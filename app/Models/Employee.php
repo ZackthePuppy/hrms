@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Department;
+use App\Models\Position;
 
 class Employee extends Model
 {
@@ -27,5 +28,8 @@ class Employee extends Model
 
     public function department(){
         return $this->belongsToMany(Department::class, 'employees')->withPivot('department_id');
+    }
+    public function position(){
+        return $this->belongsToMany(Position::class, 'employees')->withPivot('position_id');
     }
 }

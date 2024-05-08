@@ -29,12 +29,17 @@ class EmployeeResource extends Resource
                 TextInput::make('last_name')->required(),
                 TextInput::make('phone')->required(),
                 TextInput::make('email')->required(),
-                TextInput::make('position')->required(),
-                // TextInput::make('department')->required(),
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\Select::make('position_id')
+                            ->label('Position')
+                            ->relationship('position', 'name')
+                            ->native(false)
+                    ])->columnSpan(1),
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Select::make('department_id')
-                            ->label('Hatdog')
+                            ->label('Department')
                             ->relationship('department', 'name')
                             ->native(false)
                     ])->columnSpan(1),
@@ -52,8 +57,8 @@ class EmployeeResource extends Resource
                 TextColumn::make('last_name')->searchable()->sortable(),
                 TextColumn::make('phone')->searchable(),
                 TextColumn::make('email')->searchable(),
-                TextColumn::make('position')->searchable(),
-                TextColumn::make('department')->searchable(),
+                TextColumn::make('position_id')->label('Position')->searchable(),
+                TextColumn::make('department_id')->label('Department')->searchable(),
                 TextColumn::make('username')->searchable()->hidden(),
                 TextColumn::make('address')->searchable()->hidden(),
                 //
