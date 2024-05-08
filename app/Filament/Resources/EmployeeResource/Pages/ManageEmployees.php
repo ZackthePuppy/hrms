@@ -16,4 +16,9 @@ class ManageEmployees extends ManageRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Employee added!';
+    }
 }

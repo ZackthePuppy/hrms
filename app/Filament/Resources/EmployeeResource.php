@@ -3,18 +3,17 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EmployeeResource\Pages;
-use App\Filament\Resources\EmployeeResource\RelationManagers;
 use App\Models\Employee;
-use Filament\Forms;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\FormsComponent;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Forms;
 
 class EmployeeResource extends Resource
 {
@@ -31,9 +30,14 @@ class EmployeeResource extends Resource
                 TextInput::make('phone')->required(),
                 TextInput::make('email')->required(),
                 TextInput::make('position')->required(),
-                Forms\Components\Section::make()->schema([
-                    Forms\Components\Select::make('department_id')->label('Department')->relationship('department', 'name')->searchable()->multiple()
-                ]),
+                // TextInput::make('department')->required(),
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\Select::make('department_id')
+                            ->label('Hatdog')
+                            ->relationship('department', 'name')
+                            ->native(false)
+                    ])->columnSpan(1),
                 TextInput::make('username')->required(),
                 TextInput::make('password')->password(),
                 TextInput::make('address')->required()->columnspan(2),
