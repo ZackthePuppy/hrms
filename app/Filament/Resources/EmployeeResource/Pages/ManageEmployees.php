@@ -13,12 +13,13 @@ class ManageEmployees extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+            ->successNotificationTitle('Employee has been added!'),
         ];
     }
 
-    protected function getCreatedNotificationTitle(): ?string
-    {
-        return 'Employee added!';
-    }
+    // protected function getCreatedNotificationTitle(): ? string
+    // {
+    //     return 'Employee added!';
+    // }
 }

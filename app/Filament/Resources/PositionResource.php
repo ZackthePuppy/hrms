@@ -59,8 +59,6 @@ class PositionResource extends Resource
     {
         return [
             'index' => Pages\ListPositions::route('/'),
-            'create' => Pages\CreatePosition::route('/create'),
-            'edit' => Pages\EditPosition::route('/{record}/edit'),
         ];
     }
 }

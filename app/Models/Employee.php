@@ -18,8 +18,8 @@ class Employee extends Model
         'last_name',
         'phone',
         'email',
-        'position',
-        'department',
+        'position_id',
+        'department_id',
         'username',
         'password',
         'address',
@@ -27,9 +27,9 @@ class Employee extends Model
     ];
 
     public function department(){
-        return $this->belongsToMany(Department::class, 'employees')->withPivot('department_id');
+        return $this->belongsToMany(Department::class, 'departments_positions')->withPivot('department_id');
     }
     public function position(){
-        return $this->belongsToMany(Position::class, 'employees')->withPivot('position_id');
+        return $this->belongsToMany(Position::class, 'departments_positions')->withPivot('position_id');
     }
 }
