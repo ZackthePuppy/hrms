@@ -15,13 +15,14 @@ class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'department-icon';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')->required()->maxLength(255),
+                TextInput::make('description')->required()->maxLength(255),
             ]);
     }
 
@@ -30,6 +31,7 @@ class DepartmentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->label('Department Name')->sortable()->searchable(),
+                TextColumn::make('description')->label('Description')->searchable(),
             ])
             ->filters([
                 //
