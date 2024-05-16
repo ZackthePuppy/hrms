@@ -34,11 +34,13 @@ class EmployeeResource extends Resource
                         Forms\Components\Select::make('position_id')
                             ->label('Position')
                             ->relationship('position', 'name')
+                            ->required()
+                            ->multiple()
+                            ->preload()
                             ->native(false)
                             ->createOptionForm([
                                 Forms\Components\TextInput::make('name')
                                     ->label('Position Name')
-                                    ->required()
                                     ->maxLength(255),
                             ])
                     ])->columnSpan(1),
@@ -47,16 +49,21 @@ class EmployeeResource extends Resource
                         Forms\Components\Select::make('department_id')
                             ->label('Department')
                             ->relationship('department', 'name')
+                            ->required()
+                            ->multiple() //forda pivot shit
+                            ->preload()
                             ->native(false)
                             ->createOptionForm([
                                 Forms\Components\TextInput::make('name')
                                     ->label('Department Name')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('description')
                                     ->required()
                                     ->maxLength(255),
                             ])
                     ])->columnSpan(1),
                 TextInput::make('username')->required(),
-                TextInput::make('password')->password(),
+                // TextInput::make('password')->password()->required(),
                 TextInput::make('address')->required()->columnspan(2),
             ])->columns((2));
     }
@@ -69,9 +76,8 @@ class EmployeeResource extends Resource
                 TextColumn::make('last_name')->searchable()->sortable(),
                 TextColumn::make('phone')->searchable(),
                 TextColumn::make('email')->searchable(),
-                // TextColumn::make('position_id')->label('Position'),
                 TextColumn::make('position.name'),
-                TextColumn::make('department_id')->label('Department')->searchable(),
+                TextColumn::make('department.name'),
                 TextColumn::make('username')->searchable()->hidden(),
                 TextColumn::make('address')->searchable()->hidden(),
                 //

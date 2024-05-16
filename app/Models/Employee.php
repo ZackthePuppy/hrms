@@ -18,12 +18,11 @@ class Employee extends Model
         'last_name',
         'phone',
         'email',
-        'position_id',
-        'department_id',
+        // 'position_id',
+        // 'department_id',
         'username',
-        'password',
+        // 'password',
         'address',
-
     ];
 
     public function department(){

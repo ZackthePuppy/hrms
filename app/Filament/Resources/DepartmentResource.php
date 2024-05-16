@@ -4,12 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartmentResource\Pages;
 use App\Models\Department;
+use App\Models\Employee;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Textarea;
 
 class DepartmentResource extends Resource
 {
@@ -22,8 +24,8 @@ class DepartmentResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required()->maxLength(255),
-                TextInput::make('description')->required()->maxLength(255),
-            ]);
+                Textarea::make('description')->required()->rows(5),
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -31,7 +33,7 @@ class DepartmentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->label('Department Name')->sortable()->searchable(),
-                TextColumn::make('description')->label('Description')->searchable(),
+                TextColumn::make('description')->label('Description')->searchable()->words(10),
             ])
             ->filters([
                 //
