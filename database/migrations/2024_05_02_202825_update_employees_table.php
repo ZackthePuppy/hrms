@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('department');
             $table->string('position');
             $table->string('username');
-            $table->text('password');
+            $table->text('password')->nullable();
             $table->longText('address');
+            $table->string('status')->nullable();
         });
     }
 
@@ -39,6 +40,7 @@ return new class extends Migration
         $table->dropColumn('username');
         $table->dropColumn('password');
         $table->dropColumn('address');
+        $table->dropColumn('string');
     });
     }
 };

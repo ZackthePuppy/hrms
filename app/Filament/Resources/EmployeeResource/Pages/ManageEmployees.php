@@ -5,6 +5,7 @@ namespace App\Filament\Resources\EmployeeResource\Pages;
 use App\Filament\Resources\EmployeeResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
+use Filament\Notifications\Notification;
 
 class ManageEmployees extends ManageRecords
 {
@@ -14,7 +15,8 @@ class ManageEmployees extends ManageRecords
     {
         return [
             Actions\CreateAction::make()
-            ->successNotificationTitle('Employee has been added!'),
+                ->successNotificationTitle('Employee has been added!'),
+            
         ];
     }
 
