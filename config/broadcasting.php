@@ -58,8 +58,8 @@ return [
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
-                // 'encrypted' => true,
-                // 'debug' => true,
+                'encrypted' => true,
+                'debug' => true,
             ],
         ],
         // Other connections...

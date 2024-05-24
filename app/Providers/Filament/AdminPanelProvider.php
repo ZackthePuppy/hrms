@@ -24,7 +24,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->databaseNotifications()
-            // ->databaseNotificationsPolling('2s')
+            ->databaseNotificationsPolling(null)
             ->authGuard('web')
             ->default()
             ->id('admin')

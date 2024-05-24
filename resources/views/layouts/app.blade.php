@@ -24,5 +24,6 @@
         {{-- @livewire('notifications') --}}
         @filamentScripts
         @vite('resources/js/app.js')
+        <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
     </body>
 </html>

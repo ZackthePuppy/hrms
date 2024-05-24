@@ -9,29 +9,53 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/testpusher', function () {
+    return view('testpusher');
+});
 // Route::get('test', function () {
 //     $recipient = auth()->user();
 
 //     \Filament\Notifications\Notification::make()
 //         ->title('TESTING POTA')
 //         ->sendToDatabase($recipient);
-    
-    
+
+
 //     dd('BWISET');
 
 // })->middleware('auth');
 
+// Route::get('/trigger-test-notif', function () {
+
+//     $user = auth()->user();
+//     Log::info('User: ', ['user' => $user]);
+
+//     if ($user) {
+//         Notification::make()
+//             ->title('Gumana ka pls')
+//             ->success()
+//             ->send()
+//             ->sendToDatabase($user);
+
+//         event(new DatabaseNotificationsSent($user));
+//         return response()->json(['status' => 'Event triggered!']);
+//     } else {
+//         return response()->json(['status' => 'No authenticated user!'], 401);
+//     }
+
+// })->middleware('auth');
+
+
+
+
 Route::get('/trigger-test-notif', function () {
-    // $data = ['message' => 'This is a test notification'];
+    $user = auth()->user();
+    Log::info('Route accessed by user: ' . ($user ? $user->id : 'Guest'));
 
-    event(new TestNotif('Bwiset'));
-
-    // $recipient = auth()->user();
-
-    // \Filament\Notifications\Notification::make()
-    //     ->title('TESTING POTA')
-    //     ->sendToDatabase($recipient);
-
-    // dd(response());
-    return response()->json(['status' => 'Event triggered!']);
+    if ($user) {
+        Log::info('Dispatching TestNotif event');
+        event(new TestNotif('Bwiset'));
+        return response()->json(['status' => 'Event triggered!']);
+    } else {
+        return response()->json(['status' => 'No authenticated user!'], 401);
+    }
 });
